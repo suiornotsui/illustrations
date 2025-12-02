@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>suiornotsui · ilustração</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-base: #fdf7f5;
+      --bg-card: #ffffff;
+      --text-main: #2e3033;
+      --text-soft: #6f7277;
+      --accent-blue: #bcd9ff;
+      --accent-pink: #f7c3d9;
+      --accent-green: #c7e7c6;
+      --accent-neon: #7cf0c4;
+      --radius-soft: 18px;
+      --shadow-soft: 0 14px 40px rgba(0,0,0,0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg-base) url("img/bg-texture.jpg");
+      background-repeat: repeat;
+      background-attachment: fixed;
+      background-size: 500px auto;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(253,247,245,0.92);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      font-size: 0.95rem;
+    }
+
+    .brand span {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.9);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      font-size: 0.85rem;
+      text-transform: lowercase;
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1.5px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-blue),
+        var(--accent-pink),
+        var(--accent-green)
+      );
+      transition: width 0.2s ease-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding-top: 24px;
+    }
+
+    .hero-inner {
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-slider {
+      position: relative;
+      height: min(60vh, 520px);
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      max-width: 340px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .hero-overlay-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      margin-bottom: 3px;
+    }
+
+    .hero-overlay-line {
+      height: 2px;
+      width: 70px;
+      border-radius: 999px;
+      margin: 4px 0 6px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-blue),
+        var(--accent-pink),
+        var(--accent-green),
+        var(--accent-neon)
+      );
+    }
+
+    .hero-overlay-sub {
+      color: var(--text-soft);
+    }
+
+    .hero-controls {
+      position: absolute;
+      right: 18px;
+      bottom: 20px;
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .hero-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    .hero-btn:hover {
+      background: #ffffff;
+    }
+
+    /* MARQUEE */
+
+    .marquee {
+      margin-top: 18px;
+      border-radius: 999px;
+      border: 1px dashed rgba(0,0,0,0.06);
+      padding: 8px 0;
+      background: rgba(255,255,255,0.88);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-inner {
+      display: inline-flex;
+      gap: 40px;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+      font-size: 0.75rem;
+      text-transform: lowercase;
+      color: var(--text-soft);
+      align-items: center;
+    }
+
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 99px;
+      background: var(--accent-neon);
+      display: inline-block;
+      margin: 0 6px;
+    }
+
+    .marquee-horse {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .marquee-horse.flip {
+      transform: scaleX(-1);
+      display: inline-block;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* PORTFÓLIO */
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: lowercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title::after {
+      content: "";
+      width: 32px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-blue),
+        var(--accent-pink),
+        var(--accent-green)
+      );
+      opacity: 0.6;
+    }
+
+    .portfolio-strip {
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      padding: 16px 14px 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .portfolio-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .portfolio-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .portfolio-scroll::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.13);
+      border-radius: 999px;
+    }
+
+    .portfolio-item {
+      min-width: 180px;
+      max-width: 220px;
+      flex: 0 0 auto;
+      cursor: pointer;
+    }
+
+    .portfolio-thumb {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+      background: #f9f4f2;
+    }
+
+    .portfolio-thumb img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      transition: transform 0.25s ease-out;
+    }
+
+    .portfolio-item:hover .portfolio-thumb img {
+      transform: scale(1.03);
+    }
+
+    .portfolio-meta {
+      margin-top: 6px;
+      font-size: 0.8rem;
+    }
+
+    .portfolio-meta-title {
+      font-weight: 500;
+    }
+
+    .portfolio-meta-cat {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+
+    /* SOBRE */
+
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.8fr);
+      gap: 32px;
+      margin-top: 10px;
+    }
+
+    .about-photo {
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-photo-img {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 22px;
+      object-fit: cover;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-text {
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      padding: 22px 22px 24px;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+
+    .about-label {
+      font-size: 0.77rem;
+      text-transform: lowercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .about-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .about-divider {
+      width: 52px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-blue),
+        var(--accent-pink),
+        var(--accent-green)
+      );
+      margin-bottom: 12px;
+    }
+
+    .about-block + .about-block {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(0,0,0,0.06);
+    }
+
+    .about-block-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    /* CONTACTO */
+
+    .contact-box {
+      margin-top: 12px;
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 30px;
+      margin-top: 12px;
+    }
+
+    .contact-item-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-soft);
+      margin-bottom: 2px;
+    }
+
+    .contact-item-value a {
+      border-bottom: 1px dashed rgba(0,0,0,0.18);
+    }
+
+    .contact-item-value a:hover {
+      border-bottom-style: solid;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+      padding: 16px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 900px;
+      width: 100%;
+      background: var(--bg-card);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.4);
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+    }
+
+    .modal-image {
+      background: #f4edea;
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-info {
+      padding: 18px 20px 20px;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .modal-desc {
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .modal-close {
+      align-self: flex-end;
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 3px 0 0;
+    }
+
+    footer {
+      padding: 16px 20px 24px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .hero-slider {
+        height: min(55vh, 420px);
+      }
+      .about {
+        grid-template-columns: 1fr;
+      }
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+      .hero-overlay {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        padding-inline: 14px;
+      }
+      nav ul {
+        gap: 10px;
+        font-size: 0.78rem;
+      }
+      .portfolio-item {
+        min-width: 150px;
+        max-width: 170px;
+      }
+      .hero-slider {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <span>suiornotsui</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#portfolio">portfólio / portfolio</a></li>
+            <li><a href="#about">sobre / about</a></li>
+            <li><a href="#contact">contacto / contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero">
+        <div class="hero-inner">
+          <div class="hero-slider" id="hero-slider">
+            <div class="hero-slide active">
+              <img src="img/work01.jpg" alt="Ilustração 1" />
+            </div>
+            <div class="hero-slide">
+              <img src="img/work02.jpg" alt="Ilustração 2" />
+            </div>
+            <div class="hero-slide">
+              <img src="img/work03.jpg" alt="Ilustração 3" />
+            </div>
+          </div>
+
+          <div class="hero-overlay">
+            <div class="hero-overlay-title">suiornotsui</div>
+            <div class="hero-overlay-line"></div>
+            <div class="hero-overlay-sub">
+              ilustração, cavalinhos &amp; mundos suaves · illustration, small horses &amp; soft worlds
+            </div>
+          </div>
+
+          <div class="hero-controls">
+            <button class="hero-btn" id="hero-prev" aria-label="Imagem anterior">&#9664;</button>
+            <button class="hero-btn" id="hero-next" aria-label="Próxima imagem">&#9654;</button>
+          </div>
+        </div>
+
+        <div class="marquee">
+          <div class="section" style="padding: 0 20px;">
+            <div class="marquee-inner">
+              <span class="marquee-horse">🐎</span>
+              <span>authorial illustration · ilustração autoral</span>
+              <span class="marquee-dot"></span>
+              <span>pastel, delicado, artesanal</span>
+              <span class="marquee-dot"></span>
+              <span>cubismo de técnicas</span>
+              <span class="marquee-dot"></span>
+              <span>mundos suaves para gente grande &amp; pequena</span>
+              <span class="marquee-dot"></span>
+              <span>pastel, delicate, handmade illustration</span>
+              <span class="marquee-dot"></span>
+              <span>watercolour, crayons, textures &amp; tape</span>
+              <span class="marquee-dot"></span>
+              <span class="marquee-horse flip">🐎</span>
+              <span>cavalinhos indo e voltando · small horses coming and going</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFÓLIO -->
+      <section class="section" id="portfolio">
+        <div class="section-title">
+          portfólio / portfolio
+        </div>
+        <div class="portfolio-strip">
+          <div class="portfolio-scroll">
+            <div class="portfolio-item" data-full="img/work01.jpg"
+                 data-title="Lago pequeno"
+                 data-desc="Um lago miúdo cercado de cores, onde o silêncio também tem textura.">
+              <div class="portfolio-thumb">
+                <img src="img/work01-thumb.jpg" alt="Lago pequeno" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Lago pequeno</div>
+                <div class="portfolio-meta-cat">autoral · personal work</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work02.jpg"
+                 data-title="Macarrão domingo"
+                 data-desc="Mesa de domingo, macarrão em espiral e uma figura miúda segurando o garfo gigante.">
+              <div class="portfolio-thumb">
+                <img src="img/work02-thumb.jpg" alt="Macarrão domingo" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Macarrão domingo</div>
+                <div class="portfolio-meta-cat">ilustração editorial</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work03.jpg"
+                 data-title="Jardim com névoa"
+                 data-desc="Flores e plantas em rosa e lilás, como se a névoa tivesse memória.">
+              <div class="portfolio-thumb">
+                <img src="img/work03-thumb.jpg" alt="Jardim com névoa" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Jardim com névoa</div>
+                <div class="portfolio-meta-cat">série autoral · series</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work04.jpg"
+                 data-title="Cavalinhos no ar"
+                 data-desc="Cavalinhos suspensos num móbile, entre o verde e o rosa de um céu inventado.">
+              <div class="portfolio-thumb">
+                <img src="img/work04-thumb.jpg" alt="Cavalinhos no ar" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Cavalinhos no ar</div>
+                <div class="portfolio-meta-cat">autoral · horses</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work05.jpg"
+                 data-title="Mesa miúda"
+                 data-desc="Uma mesa desenhada com lápis simples e manchas de tinta, como um diário de cozinha.">
+              <div class="portfolio-thumb">
+                <img src="img/work05-thumb.jpg" alt="Mesa miúda" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Mesa miúda</div>
+                <div class="portfolio-meta-cat">livro ilustrado · picture book</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work06.jpg"
+                 data-title="Regador vermelho"
+                 data-desc="Uma figura em escada, casaco colorido e um regador vermelho que quase vira personagem.">
+              <div class="portfolio-thumb">
+                <img src="img/work06-thumb.jpg" alt="Regador vermelho" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Regador vermelho</div>
+                <div class="portfolio-meta-cat">autoral · personal work</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work07.jpg"
+                 data-title="Flores miúdas"
+                 data-desc="Estudos de flores pequenas, em linhas simples e cores suaves.">
+              <div class="portfolio-thumb">
+                <img src="img/work07-thumb.jpg" alt="Flores miúdas" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Flores miúdas</div>
+                <div class="portfolio-meta-cat">pattern · surface design</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work08.jpg"
+                 data-title="Carrossel rosa"
+                 data-desc="Um carrossel visto de perto, cavalos coloridos girando devagar no branco do papel.">
+              <div class="portfolio-thumb">
+                <img src="img/work08-thumb.jpg" alt="Carrossel rosa" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Carrossel rosa</div>
+                <div class="portfolio-meta-cat">autoral · horses</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work09.jpg"
+                 data-title="Chuva de cores"
+                 data-desc="Figuras pequenas caminhando sob uma chuva de traços e manchas coloridas.">
+              <div class="portfolio-thumb">
+                <img src="img/work09-thumb.jpg" alt="Chuva de cores" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Chuva de cores</div>
+                <div class="portfolio-meta-cat">série autoral</div>
+              </div>
+            </div>
+
+            <div class="portfolio-item" data-full="img/work10.jpg"
+                 data-title="Peixes num lago"
+                 data-desc="Peixes pequenos em água azul clara, cercados por pequenas histórias à volta.">
+              <div class="portfolio-thumb">
+                <img src="img/work10-thumb.jpg" alt="Peixes num lago" />
+              </div>
+              <div class="portfolio-meta">
+                <div class="portfolio-meta-title">Peixes num lago</div>
+                <div class="portfolio-meta-cat">livro infantil · picture book</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOBRE -->
+      <section class="section" id="about">
+        <div class="section-title">
+          sobre / about
+        </div>
+        <div class="about">
+          <div class="about-photo">
+            <!-- certifica-te que o ficheiro está em img/sui.jpeg -->
+            <img src="img/sui.jpg" alt="Retrato de suiornotsui" class="about-photo-img" />
+          </div>
+          <div class="about-text">
+            <div class="about-label">ilustração · illustration</div>
+            <div class="about-name">suiornotsui</div>
+            <div class="about-divider"></div>
+
+            <div class="about-block">
+              <div class="about-block-label">pt · neblina, papel &amp; giz</div>
+              <p>
+                Sui passou a infância e a adolescência em Ribeirão Pires, uma
+                cidade em que a neblina chega cedo e demora a ir embora.
+                Nas ilustrações, essa névoa vira papel, aquarela, giz, canetas
+                simples e pequenos recortes — um cubismo de técnicas em cores
+                pastel, onde tudo parece suave, mas nada é inteiramente calmo.
+              </p>
+            </div>
+
+            <div class="about-block">
+              <div class="about-block-label">en · fog, paper &amp; small ghosts</div>
+              <p>
+                Growing up in a foggy town near São Paulo, Sui learned to draw
+                with whatever was at hand: watercolour, crayons, ballpoint pens,
+                tape, pieces of paper. Today her work mixes these traces into
+                delicate, textured worlds — pastel and quiet on the surface,
+                full of little ghosts and stories underneath.
+              </p>
+            </div>
+
+            <div class="about-block">
+              <div class="about-block-label">pt / en · hoje / now</div>
+              <p>
+                Depois de ilustrar livros e embalagens para diferentes marcas,
+                Sui foca num portfólio mais autoral, aberto a projetos em que a
+                delicadeza, as texturas e o olhar para o pequeno possam aparecer
+                com calma.
+                <br /><br />
+                After illustrating for books and packaging, she is now focused
+                on authorial projects and collaborations where softness, texture
+                and tiny details can breathe.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section class="section" id="contact">
+        <div class="section-title">
+          contacto / contact
+        </div>
+        <div class="contact-box">
+          <p>
+            Para convites, livros ilustrados, capas, embalagens ou projetos
+            autorais em colaboração, você pode escrever diretamente para a Sui
+            ou acompanhar o trabalho em andamento nos links abaixo.
+            <br />
+            For commissions and collaborations, please get in touch:
+          </p>
+
+          <div class="contact-grid">
+            <div>
+              <div class="contact-item-label">e-mail</div>
+              <div class="contact-item-value">
+                <a href="mailto:hello@suiornotsui.com">hello@suiornotsui.com</a>
+              </div>
+            </div>
+            <div>
+              <div class="contact-item-label">instagram</div>
+              <div class="contact-item-value">
+                <a href="https://instagram.com/suiornotsui" target="_blank" rel="noreferrer">
+                  @suiornotsui
+                </a>
+              </div>
+            </div>
+            <div>
+              <div class="contact-item-label">behance</div>
+              <div class="contact-item-value">
+                <a href="https://behance.net/suiornotsui" target="_blank" rel="noreferrer">
+                  behance.net/suiornotsui
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal" id="portfolio-modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <div class="modal-image">
+          <img src="" alt="" id="modal-image" />
+        </div>
+        <div class="modal-info">
+          <button class="modal-close" id="modal-close" aria-label="Fechar">×</button>
+          <div class="modal-title" id="modal-title"></div>
+          <div class="modal-desc" id="modal-desc"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © suiornotsui · ilustração em papel, telas e neblinas pequenas.
+    </footer>
+  </div>
+
+  <script>
+    // HERO SLIDER
+    (function() {
+      const slides = Array.from(document.querySelectorAll('.hero-slide'));
+      if (!slides.length) return;
+
+      let current = 0;
+      const prevBtn = document.getElementById('hero-prev');
+      const nextBtn = document.getElementById('hero-next');
+      let timer = null;
+
+      function showSlide(index) {
+        slides[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+      }
+
+      function next() {
+        showSlide(current + 1);
+      }
+
+      function prev() {
+        showSlide(current - 1);
+      }
+
+      function startAuto() {
+        timer = setInterval(next, 6000);
+      }
+
+      function stopAuto() {
+        if (timer) clearInterval(timer);
+      }
+
+      nextBtn.addEventListener('click', () => {
+        stopAuto();
+        next();
+        startAuto();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        stopAuto();
+        prev();
+        startAuto();
+      });
+
+      startAuto();
+    })();
+
+    // MODAL PORTFÓLIO
+    (function() {
+      const items = document.querySelectorAll('.portfolio-item');
+      const modal = document.getElementById('portfolio-modal');
+      const modalImage = document.getElementById('modal-image');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalClose = document.getElementById('modal-close');
+
+      function openModal(src, title, desc) {
+        modalImage.src = src;
+        modalImage.alt = title || '';
+        modalTitle.textContent = title || '';
+        modalDesc.textContent = desc || '';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          const src = item.getAttribute('data-full');
+          const title = item.getAttribute('data-title');
+          const desc = item.getAttribute('data-desc');
+          openModal(src, title, desc);
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
