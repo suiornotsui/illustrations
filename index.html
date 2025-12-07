@@ -749,7 +749,7 @@
       <div class="section-title">work / portfolio</div>
 
       <div class="portfolio-grid">
-        <!-- 12 cards — basta apontar para work01.jpg ... work12.jpg -->
+        <!-- 12 cards -->
         <div class="work-card">
           <div class="work-thumb">
             <img src="img/work01.jpg" alt="carousel with painted horses illustration" />
@@ -1033,17 +1033,18 @@
           if (!img) return;
           const src = img.getAttribute("src");
           const alt = img.getAttribute("alt") || "";
-          // usamos o alt como legenda simples
-          openLightbox(src, alt, alt);
+          openLightbox(src, alt, alt); // usa o alt como legenda simples
         });
       });
 
       closeBtn.addEventListener("click", closeLightbox);
+
       backdrop.addEventListener("click", (event) => {
         if (event.target === backdrop) {
           closeLightbox();
         }
       });
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
           closeLightbox();
