@@ -2,35 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>suiornotsui · illustration & soft worlds</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="suiornotsui · illustration & soft worlds · pastel, delicate, handmade images for children's books, editorial stories and poetic packaging."
-  />
+  <title>suiornotsui — illustration & soft worlds</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Illustration portfolio by suiornotsui — soft worlds, quiet stories, a small cubism of techniques." />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Special+Elite&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Fonte tipo máquina de escrever + sans suave -->
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg-soft: #fff7fb;
-      --bg-card: #ffffff;
-      --bg-chip: #ffeef7;
-      --accent: #7ee8c8;
-      --accent-soft: #ffb5d8;
-      --accent-strong: #ff4f8b;
-      --text-main: #3a2f36;
-      --text-soft: #7a6672;
-      --shadow-soft: 0 22px 45px rgba(179, 143, 160, 0.26);
-      --radius-big: 24px;
-      --radius-small: 999px;
-      --border-soft: 1px solid rgba(255, 182, 211, 0.7);
+      --bg-pink: #fdeef4;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --accent: #ffb6c9;
+      --accent-soft: #b3f0de;
+      --text-main: #333333;
+      --text-soft: #777777;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease-out;
+      --max-width: 1080px;
     }
 
     * {
@@ -40,19 +32,13 @@
     }
 
     body {
-      font-family: "Work Sans", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      font-family: "Work Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-main);
       background:
-        linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.96),
-          rgba(253, 238, 244, 0.98)
-        ),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(253, 238, 244, 0.95)),
         url("img/bg-texture.jpg");
-      background-size: 500px 500px; /* textura menor, repetida, mais leve */
+      background-size: cover;
       background-repeat: repeat;
-      background-attachment: scroll; /* tira o efeito pesado que dava delay */
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -63,209 +49,296 @@
     }
 
     img {
-      display: block;
       max-width: 100%;
-      height: auto;
+      display: block;
     }
-
-    /* Layout geral */
 
     .page {
-      max-width: 1120px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 24px 18px 72px;
+      padding: 18px 18px 64px;
     }
+
+    /* HEADER */
 
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
-      font-size: 14px;
+      padding: 10px 4px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
     }
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 0, 0, 0.06);
+    .logo {
+      font-family: "Special Elite", "Courier New", monospace;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 10px 20px rgba(180, 150, 170, 0.15);
-      font-family: "Special Elite", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      letter-spacing: 0.05em;
-      text-transform: lowercase;
-    }
-
-    .brand-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
     }
 
     nav {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       font-size: 13px;
       text-transform: lowercase;
-      color: var(--text-soft);
     }
 
     nav a {
-      padding: 4px 0;
-      position: relative;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      color: var(--text-soft);
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0;
-      height: 1px;
-      background: var(--accent-strong);
-      transition: width 0.25s ease;
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-main);
+      transform: translateY(-1px);
     }
 
-    nav a:hover::after {
-      width: 100%;
+    /* SECTIONS */
+
+    .section {
+      margin-top: 40px;
     }
 
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+    .section-title {
+      font-family: "Special Elite", "Courier New", monospace;
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 16px;
     }
 
     /* HERO */
 
     .hero {
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 40px;
-      padding: 26px 26px 26px;
-      box-shadow: var(--shadow-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      border: 1px solid rgba(255, 190, 215, 0.75);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: flex-start;
-    }
-
-    .hero-title-block {
-      max-width: 340px;
-    }
-
-    .hero-tagline {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent-strong);
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
-
-    .hero-title {
-      font-family: "Special Elite", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      font-size: 29px;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      color: var(--text-soft);
-    }
-
-    .hero-sub span {
-      white-space: nowrap;
-    }
-
-    .hero-main-image {
-      flex: 1;
-      min-height: 220px;
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 32px;
-      background: #fef9ff;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid rgba(255, 220, 238, 0.9);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.45fr);
+      gap: 16px;
+      align-items: stretch;
     }
 
-    .hero-main-image img {
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-slider {
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #f8dde6;
+      min-height: 260px;
+      isolation: isolate;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out, transform 0.8s ease-out;
+      transform: scale(1.02);
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.02);
-      transition: transform 4s ease-out;
     }
 
-    .hero-main-image:hover img {
-      transform: scale(1.06);
+    .slider-controls {
+      position: absolute;
+      bottom: 14px;
+      right: 16px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .slider-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    .slider-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+      background: white;
+    }
+
+    .slider-dots {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .slider-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+
+    .slider-dot.active {
+      background: #ffffff;
+      transform: scale(1.2);
     }
 
     .hero-card {
-      position: absolute;
-      left: 20px;
-      bottom: 16px;
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 18px;
-      box-shadow: 0 16px 30px rgba(163, 126, 145, 0.35);
-      max-width: 260px;
+      background: var(--bg-card);
+      border-radius: 26px;
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-name {
+      font-family: "Special Elite", "Courier New", monospace;
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 25px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
       font-size: 13px;
-      border: 1px solid rgba(255, 194, 219, 0.9);
-    }
-
-    .hero-card-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .hero-card-sub {
       color: var(--text-soft);
-      font-size: 12px;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
-    /* Marquee */
+    .hero-poem {
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 16px;
+      font-style: italic;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+      color: var(--text-soft);
+      white-space: nowrap;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn-primary {
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(120deg, var(--accent), var(--accent-soft));
+      color: #253238;
+      box-shadow: 0 10px 22px rgba(255, 117, 164, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .btn-primary span.arrow {
+      font-size: 15px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+      box-shadow: 0 14px 30px rgba(255, 117, 164, 0.5);
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    /* MARQUEE */
 
     .marquee-shell {
-      margin-top: 2px;
+      margin-top: 22px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+      padding: 8px 12px;
       overflow: hidden;
-      border-radius: 999px;
-      background: rgba(255, 246, 253, 0.9);
-      border: 1px solid rgba(255, 195, 224, 0.9);
-      box-shadow: 0 10px 24px rgba(179, 143, 160, 0.25);
     }
 
     .marquee-inner {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      padding: 8px 22px;
+      display: inline-flex;
       white-space: nowrap;
-      animation: marquee 20s linear infinite;
+      animation: marquee 26s linear infinite;
       font-size: 12px;
       color: var(--text-soft);
+      align-items: center;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 32px;
     }
 
     .marquee-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
-      background: var(--accent);
-      flex-shrink: 0;
+      background: var(--accent-soft);
     }
 
     @keyframes marquee {
@@ -277,223 +350,85 @@
       }
     }
 
-    /* Portfolio */
+    /* PORTFOLIO */
 
-    section {
-      scroll-margin-top: 80px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      margin-bottom: 6px;
-    }
-
-    .section-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: "Special Elite", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      font-size: 18px;
-      text-transform: lowercase;
-    }
-
-    .section-note {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .work-strip {
-      display: flex;
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      margin-bottom: 6px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(190, 150, 171, 0.7) rgba(255, 240, 247, 0.9);
     }
 
-    .work-strip::-webkit-scrollbar {
-      height: 6px;
+    @media (max-width: 880px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    .work-strip::-webkit-scrollbar-track {
-      background: rgba(255, 240, 247, 0.9);
-      border-radius: 999px;
-    }
-
-    .work-strip::-webkit-scrollbar-thumb {
-      background: rgba(190, 150, 171, 0.85);
-      border-radius: 999px;
+    @media (max-width: 540px) {
+      .portfolio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .work-card {
-      min-width: 180px;
-      max-width: 220px;
       background: rgba(255, 255, 255, 0.96);
-      border-radius: 18px;
-      padding: 8px;
-      box-shadow: 0 14px 30px rgba(170, 132, 152, 0.3);
-      border: 1px solid rgba(255, 194, 219, 0.9);
-      cursor: zoom-in;
-      transition: transform 0.16s ease, box-shadow 0.16s ease;
+      border-radius: var(--radius-lg);
+      padding: 8px 8px 10px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     }
 
     .work-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 36px rgba(155, 118, 138, 0.38);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
     }
 
     .work-thumb {
-      border-radius: 12px;
+      border-radius: 20px;
       overflow: hidden;
-      margin-bottom: 6px;
-      background: #fef6fb;
+      background: #f9e6f0;
+      aspect-ratio: 4 / 3;
     }
 
     .work-thumb img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .work-label {
-      font-size: 12px;
-      color: var(--text-soft);
-      line-height: 1.4;
-    }
-
-    /* Sobre */
-
-    .about-grid {
-      margin-top: 8px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 30px;
-      padding: 22px 22px 20px;
-      display: grid;
-      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
-      gap: 20px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(255, 195, 220, 0.85);
-    }
-
-    .about-photo {
-      border-radius: 26px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 214, 232, 0.95);
-      background: #fffdfd;
-    }
-
-    .about-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .about-text {
-      font-size: 14px;
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    .about-text p + p {
-      margin-top: 10px;
-    }
-
-    .about-soft {
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .about-name {
-      font-family: "Special Elite", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      font-size: 17px;
-      margin-bottom: 4px;
-    }
-
-    /* Contact */
-
-    .contact-card {
-      margin-top: 8px;
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 26px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 18px 40px rgba(163, 126, 145, 0.32);
-      border: 1px solid rgba(255, 195, 220, 0.9);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 14px;
-      align-items: center;
-      font-size: 13px;
-    }
-
-    .contact-label {
-      color: var(--text-soft);
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--bg-chip);
-      border: 1px solid rgba(255, 190, 215, 0.9);
-      font-size: 12px;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .chip-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .chip:hover {
-      transform: translateY(-1px);
-      background: #ffe0f1;
-      box-shadow: 0 12px 24px rgba(176, 139, 158, 0.35);
-    }
-
-    footer {
-      margin-top: 26px;
-      font-size: 11px;
-      color: var(--text-soft);
+    .work-meta {
       display: flex;
       justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
+      align-items: center;
+      padding: 0 2px;
+      gap: 6px;
     }
 
-    /* Lightbox / modal */
+    .work-title {
+      font-size: 12px;
+      color: var(--text-main);
+    }
 
+    .work-tags {
+      font-size: 10px;
+      text-transform: lowercase;
+      color: var(--text-soft);
+    }
+
+    /* LIGHTBOX (modal for work images) */
     .lightbox-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(23, 13, 24, 0.64);
+      background: rgba(15, 8, 20, 0.65);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 50;
-      padding: 20px;
+      padding: 24px;
+      z-index: 60;
     }
 
     .lightbox-backdrop.visible {
@@ -504,10 +439,10 @@
       max-width: 960px;
       width: 100%;
       max-height: 90vh;
-      background: #fffafc;
+      background: rgba(255, 255, 255, 0.98);
       border-radius: 24px;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 200, 228, 0.95);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 200, 226, 0.95);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -515,23 +450,26 @@
 
     .lightbox-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 10px 14px 8px;
+      border-bottom: 1px solid rgba(255, 215, 236, 0.9);
       font-size: 12px;
       color: var(--text-soft);
-      border-bottom: 1px solid rgba(255, 215, 233, 0.9);
       background: linear-gradient(
         to right,
-        rgba(254, 240, 251, 0.98),
-        rgba(255, 249, 253, 0.96)
+        rgba(254, 242, 249, 0.98),
+        rgba(255, 250, 253, 0.98)
       );
     }
 
     .lightbox-title {
       display: flex;
-      gap: 6px;
       align-items: center;
+      gap: 6px;
+      font-family: "Special Elite", "Courier New", monospace;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
     }
 
     .lightbox-close {
@@ -550,7 +488,7 @@
     }
 
     .lightbox-body {
-      padding: 12px 12px 10px;
+      padding: 12px 12px 14px;
       overflow: auto;
     }
 
@@ -559,7 +497,7 @@
       overflow: hidden;
       background: #fdf5ff;
       border: 1px solid rgba(255, 207, 230, 0.9);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .lightbox-img-wrap img {
@@ -571,62 +509,116 @@
     .lightbox-caption {
       font-size: 13px;
       color: var(--text-soft);
+      line-height: 1.4;
     }
 
-    /* Responsivo */
+    /* ABOUT */
 
-    @media (max-width: 768px) {
-      .page {
-        padding: 18px 14px 56px;
-      }
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
+      gap: 20px;
+      align-items: center;
+    }
 
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .hero {
-        padding: 18px 16px 18px;
-        border-radius: 26px;
-      }
-
-      .hero-top {
-        flex-direction: column;
-      }
-
-      .hero-main-image {
-        min-height: 200px;
-      }
-
-      .hero-card {
-        left: 12px;
-        right: 12px;
-        max-width: none;
-      }
-
-      .about-grid {
+    @media (max-width: 820px) {
+      .about {
         grid-template-columns: minmax(0, 1fr);
       }
+    }
 
-      .work-card {
-        min-width: 160px;
-      }
+    .about-photo {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius-xl);
+      padding: 12px;
+      box-shadow: var(--shadow-soft);
+    }
 
-      .marquee-inner {
-        animation-duration: 25s;
-      }
+    .about-photo-img {
+      border-radius: 22px;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .about-text {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-xl);
+      padding: 18px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .about-name {
+      font-family: "Special Elite", "Courier New", monospace;
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .about-poem {
+      margin-bottom: 12px;
+    }
+
+    .about-techniques {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    /* CONTACT */
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-xl);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .chip-link {
+      font-size: 12px;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      background: #fff7fb;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .chip-link:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    footer {
+      margin-top: 36px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--text-soft);
     }
   </style>
 </head>
-
 <body>
   <div class="page">
     <header>
-      <div class="brand">
-        <span class="brand-dot"></span>
-        <span>suiornotsui</span>
-      </div>
+      <div class="logo">suiornotsui</div>
       <nav>
         <a href="#work">work</a>
         <a href="#about">about</a>
@@ -634,376 +626,394 @@
       </nav>
     </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero" id="top">
-        <div class="hero-top">
-          <div class="hero-title-block">
-            <div class="hero-tagline">illustration & soft worlds</div>
-            <h1 class="hero-title">soft stories for big and small people</h1>
-            <p class="hero-sub">
-              Pastel, delicate, handmade illustrations &mdash; a small
-              <span>cubism of techniques</span> mixing pencil, crayons,
-              collage and tiny ghosts of colour.
-            </p>
+    <!-- HERO -->
+
+    <section class="section" id="top">
+      <div class="hero">
+        <div class="hero-slider" aria-label="featured illustration details">
+          <div class="hero-slide active">
+            <img src="img/banner01.jpg" alt="detail from an illustration by suiornotsui" />
+          </div>
+          <div class="hero-slide">
+            <img src="img/banner02.jpg" alt="detail from an illustration by suiornotsui" />
+          </div>
+          <div class="hero-slide">
+            <img src="img/banner03.jpg" alt="detail from an illustration by suiornotsui" />
+          </div>
+          <div class="hero-slide">
+            <img src="img/banner04.jpg" alt="detail from an illustration by suiornotsui" />
           </div>
 
-          <div class="hero-main-image">
-            <!-- detalhe 1 do banner -->
-            <img src="img/det01.jpg" alt="detail from an illustration by suiornotsui" />
-            <div class="hero-card">
-              <div class="hero-card-title">suiornotsui</div>
-              <div class="hero-card-sub">
-                Illustration for children's books, editorial stories and
-                poetic packaging. Gentle colour fields, small horses, quiet
-                people and soft textures.
-              </div>
-            </div>
+          <div class="slider-dots" aria-hidden="true">
+            <div class="slider-dot active"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
           </div>
-        </div>
 
-        <!-- marquee -->
-        <div class="marquee-shell">
-          <div class="marquee-inner">
-            <span class="marquee-dot"></span>
-            authorial illustration
-            <span class="marquee-dot"></span>
-            pastel, delicate &amp; handmade
-            <span class="marquee-dot"></span>
-            small cubism of techniques
-            <span class="marquee-dot"></span>
-            soft worlds for big &amp; small people
-            <span class="marquee-dot"></span>
-            horses, gardens, quiet adventures
-            <span class="marquee-dot"></span>
-            illustration for books, editorial &amp; packaging
-            <span class="marquee-dot"></span>
-            authorial illustration
-            <span class="marquee-dot"></span>
-            pastel, delicate &amp; handmade
-            <span class="marquee-dot"></span>
-            small cubism of techniques
-          </div>
-        </div>
-      </section>
-
-      <!-- PORTFOLIO -->
-      <section id="work">
-        <div class="section-label">portfolio</div>
-        <div class="section-title-row">
-          <h2 class="section-title">selected works</h2>
-          <div class="section-note">
-            12 pieces from recent soft worlds · click to see details
+          <div class="slider-controls">
+            <button class="slider-btn" id="prevSlide" aria-label="Previous illustration">&#8592;</button>
+            <button class="slider-btn" id="nextSlide" aria-label="Next illustration">&#8594;</button>
           </div>
         </div>
 
-        <div class="work-strip">
-          <!-- 1 -->
-          <button
-            class="work-card"
-            data-full="img/work01.jpg"
-            data-caption="Soft carousel · horses in pastel colours for a gentle fairground story."
-          >
-            <div class="work-thumb">
-              <img src="img/work01-thumb.jpg" alt="carousel illustration" />
+        <div class="hero-card">
+          <div>
+            <div class="hero-name">suiornotsui</div>
+            <div class="hero-title">illustration &amp; soft worlds</div>
+            <div class="hero-sub">
+              authorial illustration for books, packaging and visual storytelling —
+              with a small cubism of techniques.
             </div>
-            <div class="work-label">
-              carousel of soft horses · book spread
-            </div>
-          </button>
 
-          <!-- 2 -->
-          <button
-            class="work-card"
-            data-full="img/work02.jpg"
-            data-caption="Figure in a yellow field · crayons and gouache on textured paper."
-          >
-            <div class="work-thumb">
-              <img src="img/work02-thumb.jpg" alt="figure in a field illustration" />
+            <div class="hero-poem">
+              Some drawings are almost people.<br />
+              Some are just the air thinking.<br />
+              I try to catch both.
             </div>
-            <div class="work-label">
-              walking through flowers · character in a field
-            </div>
-          </button>
 
-          <!-- 3 -->
-          <button
-            class="work-card"
-            data-full="img/work03.jpg"
-            data-caption="Esconderijos decantados · collage, pencils and type for a quiet, surreal scene."
-          >
-            <div class="work-thumb">
-              <img src="img/work03-thumb.jpg" alt="collage with figure and animals" />
+            <div class="hero-tags">
+              <span class="tag-pill">authorial illustration</span>
+              <span class="tag-pill">soft color palettes</span>
+              <span class="tag-pill">horses, plants &amp; quiet stories</span>
+              <span class="tag-pill">cubism of techniques</span>
             </div>
-            <div class="work-label">
-              hiding places · collage &amp; type
-            </div>
-          </button>
-
-          <!-- 4 -->
-          <button
-            class="work-card"
-            data-full="img/work04.jpg"
-            data-caption="Soft pink room with one small painting and many colours floating around."
-          >
-            <div class="work-thumb">
-              <img src="img/work04-thumb.jpg" alt="pink room illustration" />
-            </div>
-            <div class="work-label">
-              pink room with picture · gentle interior
-            </div>
-          </button>
-
-          <!-- 5 -->
-          <button
-            class="work-card"
-            data-full="img/work05.jpg"
-            data-caption="Still life with fruits and patterns · a small picnic of colours."
-          >
-            <div class="work-thumb">
-              <img src="img/work05-thumb.jpg" alt="table with fruits and patterns" />
-            </div>
-            <div class="work-label">
-              table &amp; fruits · mixed media illustration
-            </div>
-          </button>
-
-          <!-- 6 -->
-          <button
-            class="work-card"
-            data-full="img/work06.jpg"
-            data-caption="Horse riders in a green field · inspired by festive parades and countryside stories."
-          >
-            <div class="work-thumb">
-              <img src="img/work06-thumb.jpg" alt="horses in a green field" />
-            </div>
-            <div class="work-label">
-              horses in the green · parade illustration
-            </div>
-          </button>
-
-          <!-- 7 -->
-          <button
-            class="work-card"
-            data-full="img/work07.jpg"
-            data-caption="Gardener on a ladder watering tall flowers · pastels and pencil on soft paper."
-          >
-            <div class="work-thumb">
-              <img src="img/work07-thumb.jpg" alt="gardener on a ladder illustration" />
-            </div>
-            <div class="work-label">
-              gardener on a ladder · garden scene
-            </div>
-          </button>
-
-          <!-- 8 -->
-          <button
-            class="work-card"
-            data-full="img/work08.jpg"
-            data-caption="Colourful alphabet of shapes and small creatures · experiment for children's material."
-          >
-            <div class="work-thumb">
-              <img src="img/work08-thumb.jpg" alt="colourful experimental scene" />
-            </div>
-            <div class="work-label">
-              soft alphabet of shapes · experiment
-            </div>
-          </button>
-
-          <!-- 9 -->
-          <button
-            class="work-card"
-            data-full="img/work09.jpg"
-            data-caption="Three people sharing a ride · acrylics and crayons with visible texture."
-          >
-            <div class="work-thumb">
-              <img src="img/work09-thumb.jpg" alt="three people riding illustration" />
-            </div>
-            <div class="work-label">
-              three friends on a ride · character study
-            </div>
-          </button>
-
-          <!-- 10 -->
-          <button
-            class="work-card"
-            data-full="img/work10.jpg"
-            data-caption="Dinosaurs, notes and small fossils · collage and drawing for educational material."
-          >
-            <div class="work-thumb">
-              <img src="img/work10-thumb.jpg" alt="dinosaurs and geology illustration" />
-            </div>
-            <div class="work-label">
-              dinosaurs &amp; layers · educational piece
-            </div>
-          </button>
-
-          <!-- 11 -->
-          <button
-            class="work-card"
-            data-full="img/work11.jpg"
-            data-caption="Rider in soft green hills · tiny landscape using layered textures."
-          >
-            <div class="work-thumb">
-              <img src="img/work11-thumb.jpg" alt="rider in green hills illustration" />
-            </div>
-            <div class="work-label">
-              rider in soft hills · landscape
-            </div>
-          </button>
-
-          <!-- 12 -->
-          <button
-            class="work-card"
-            data-full="img/work12.jpg"
-            data-caption="Soft horses on a mobile · detail from a piece about sleep and lullabies."
-          >
-            <div class="work-thumb">
-              <img src="img/work12-thumb.jpg" alt="mobile with horses illustration" />
-            </div>
-            <div class="work-label">
-              horse mobile · detail from a lullaby piece
-            </div>
-          </button>
-        </div>
-      </section>
-
-      <!-- SOBRE -->
-      <section id="about">
-        <div class="section-label">about</div>
-        <div class="section-title-row">
-          <h2 class="section-title">suiornotsui</h2>
-          <div class="section-note">illustration &amp; soft worlds</div>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-photo">
-            <img src="img/sui.jpg" alt="portrait of illustrator suiornotsui" />
           </div>
-          <div class="about-text">
-            <p class="about-name">suiornotsui</p>
-            <p>
-              Sui draws soft worlds: small people, gentle horses, colourful
-              fields and quiet objects that feel a little like foggy mornings.
-            </p>
-            <p>
-              Her work is a tiny
-              <strong>cubism of techniques</strong>: pencils, crayons,
-              collage, inks, typewriter letters and whatever paper is around.
-              Everything is layered until it looks like a memory.
-            </p>
-            <p class="about-soft">
-              She works on illustration for children's books, editorial
-              stories and poetic packaging, and is happy when an image feels
-              both simple and a little strange.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      <!-- CONTACTO -->
-      <section id="contact">
-        <div class="section-label">contact</div>
-        <div class="section-title-row">
-          <h2 class="section-title">say hello</h2>
-          <div class="section-note">
-            for commissions, collaborations or just soft talks
-          </div>
-        </div>
-
-        <div class="contact-card">
-          <div class="contact-label">reach out via</div>
-          <div class="chip-row">
-            <a
-              class="chip"
-              href="mailto:suiornotsui@gmail.com"
-              aria-label="email suiornotsui"
-            >
-              <span class="chip-dot"></span>
-              <span>email · suiornotsui@gmail.com</span>
+          <div class="hero-cta-row">
+            <a href="#contact">
+              <button class="btn-primary">
+                <span>available for commissions</span>
+                <span class="arrow">↗</span>
+              </button>
             </a>
-
-            <a
-              class="chip"
-              href="https://instagram.com/suiornotsui__"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="instagram profile of suiornotsui"
-            >
-              <span class="chip-dot"></span>
-              <span>instagram · @suiornotsui__</span>
-            </a>
+            <div class="hero-note">
+              based in portugal,<br />
+              working with clients everywhere.
+            </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+
+      <div class="marquee-shell" aria-hidden="true">
+        <div class="marquee-inner">
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>children's books</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>editorial illustration</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>packaging &amp; labels</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>pattern &amp; surface design</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>soft worlds for small and big people</span>
+          </div>
+
+          <!-- repeat for smooth loop -->
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>children's books</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>editorial illustration</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>packaging &amp; labels</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>pattern &amp; surface design</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span>
+            <span>soft worlds for small and big people</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK / PORTFOLIO -->
+
+    <section class="section" id="work">
+      <div class="section-title">work / portfolio</div>
+
+      <div class="portfolio-grid">
+        <!-- 12 cards — basta apontar para work01.jpg ... work12.jpg -->
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work01.jpg" alt="carousel with painted horses illustration" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">carousel</div>
+            <div class="work-tags">soft detail · horses</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work02.jpg" alt="person walking through a field of flowers illustration" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">field of flowers</div>
+            <div class="work-tags">pastel · walking</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work03.jpg" alt="black and white collage with woman, birds and horses" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">hidden songs</div>
+            <div class="work-tags">collage · monochrome</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work04.jpg" alt="figure holding a jug in a pink textured background" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">pink room</div>
+            <div class="work-tags">textures · everyday magic</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work05.jpg" alt="mobile with painted horses on pastel background" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">horse mobile</div>
+            <div class="work-tags">horses · pastel</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work06.jpg" alt="pond and lush garden illustration in bright colors" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">garden pond</div>
+            <div class="work-tags">soft worlds · water</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work07.jpg" alt="table with fruits, flowers and stitched horse illustration" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">table story</div>
+            <div class="work-tags">mixed media · home</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work08.jpg" alt="green field with people riding horses illustration" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">parade of horses</div>
+            <div class="work-tags">horses · landscape</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work09.jpg" alt="figure on a ladder watering plants illustration" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">garden ladder</div>
+            <div class="work-tags">plants · quiet work</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work10.jpg" alt="colorful abstract collage with horse and letters" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">soft experiment</div>
+            <div class="work-tags">collage · play</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work11.jpg" alt="dinosaurs, rocks and small bird in a notebook-style collage" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">tiny museum</div>
+            <div class="work-tags">creatures · notebook</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-thumb">
+            <img src="img/work12.jpg" alt="small rider on a horse crossing soft green hills" />
+          </div>
+          <div class="work-meta">
+            <div class="work-title">quiet rider</div>
+            <div class="work-tags">landscape · soft hills</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="section" id="about">
+      <div class="section-title">about</div>
+      <div class="about">
+        <div class="about-photo">
+          <img src="img/sui.jpg" alt="portrait of suiornotsui" class="about-photo-img" />
+        </div>
+        <div class="about-text">
+          <div class="about-name">suiornotsui</div>
+          <div class="about-poem">
+            I draw what the day whispers.<br />
+            A mountain pretending. A child thinking.<br />
+            A fruit remembering its shape.
+          </div>
+          <div class="about-poem">
+            Some illustrations look like scenes from a book.
+            Others are just textures trying to become a story.
+            My work stays in between: soft, curious, slightly wild.
+          </div>
+          <div class="about-techniques">
+            Cubism of techniques: colored pencils, paper textures, scissors and glue, digital layers,
+            ink, pastel and small accidents.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="section" id="contact">
+      <div class="section-title">contact</div>
+      <div class="contact-card">
+        <div>
+          Let’s work together.
+          I’m open to children’s books, editorial pieces, packaging, album covers and quiet visual stories.
+        </div>
+        <div class="contact-links">
+          <a class="chip-link" href="mailto:suiornotsui@gmail.com">
+            <span>✉</span>
+            <span>email</span>
+          </a>
+          <a class="chip-link" href="https://instagram.com/suiornotsui__" target="_blank" rel="noreferrer">
+            <span>◎</span>
+            <span>instagram</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <footer>
-      <span>© suiornotsui · illustration &amp; soft worlds</span>
-      <span>site built with small horses, paper &amp; light</span>
+      © <span id="year"></span> suiornotsui — illustration &amp; soft worlds.
     </footer>
-  </div>
-
-  <!-- LIGHTBOX / MODAL -->
-  <div class="lightbox-backdrop" id="lightbox-backdrop" aria-hidden="true">
-    <div class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-heading">
-      <div class="lightbox-header">
-        <div class="lightbox-title">
-          <span class="brand-dot"></span>
-          <span id="lightbox-heading">suiornotsui · work detail</span>
+    <!-- Lightbox for portfolio works -->
+    <div class="lightbox-backdrop" id="lightbox-backdrop" aria-hidden="true">
+      <div class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-heading">
+        <div class="lightbox-header">
+          <div class="lightbox-title">
+            <span>●</span>
+            <span id="lightbox-heading">work detail</span>
+          </div>
+          <button class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
         </div>
-        <button class="lightbox-close" id="lightbox-close" aria-label="close">
-          ×
-        </button>
-      </div>
-      <div class="lightbox-body">
-        <div class="lightbox-img-wrap">
-          <img id="lightbox-image" src="" alt="" />
+        <div class="lightbox-body">
+          <div class="lightbox-img-wrap">
+            <img id="lightbox-image" src="" alt="" />
+          </div>
+          <p class="lightbox-caption" id="lightbox-caption"></p>
         </div>
-        <p class="lightbox-caption" id="lightbox-caption"></p>
       </div>
     </div>
   </div>
 
+  <!-- JS: slider + year -->
+
   <script>
-    // carrossel simples no hero — troca entre 4 detalhes
+    // current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // slider
+    const slides = Array.from(document.querySelectorAll(".hero-slide"));
+    const dots = Array.from(document.querySelectorAll(".slider-dot"));
+    const prevBtn = document.getElementById("prevSlide");
+    const nextBtn = document.getElementById("nextSlide");
+
+    let current = 0;
+    let autoTimer = null;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+      current = index;
+    }
+
+    function nextSlide() {
+      const next = (current + 1) % slides.length;
+      showSlide(next);
+    }
+
+    function prevSlideFn() {
+      const prev = (current - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+
+    function startAuto() {
+      autoTimer = setInterval(nextSlide, 6000);
+    }
+
+    function resetAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      startAuto();
+    }
+
+    nextBtn.addEventListener("click", () => {
+      nextSlide();
+      resetAuto();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      prevSlideFn();
+      resetAuto();
+    });
+
+    startAuto();
+
+    // lightbox for portfolio works
     (function () {
-      const heroImg = document.querySelector(".hero-main-image img");
-      if (!heroImg) return;
-
-      const images = [
-        "img/det01.jpg",
-        "img/det02.jpg",
-        "img/det03.jpg",
-        "img/det04.jpg",
-      ];
-      let index = 0;
-
-      setInterval(() => {
-        index = (index + 1) % images.length;
-        heroImg.style.opacity = "0";
-        setTimeout(() => {
-          heroImg.src = images[index];
-          heroImg.style.opacity = "1";
-        }, 220);
-      }, 5500);
-    })();
-
-    // lightbox / modal para as obras
-    (function () {
-      const cards = document.querySelectorAll(".work-card");
+      const cards = Array.from(document.querySelectorAll(".work-card"));
       const backdrop = document.getElementById("lightbox-backdrop");
-      const imageEl = document.getElementById("lightbox-image");
+      const imgEl = document.getElementById("lightbox-image");
       const captionEl = document.getElementById("lightbox-caption");
       const closeBtn = document.getElementById("lightbox-close");
 
-      if (!cards.length || !backdrop || !imageEl || !captionEl || !closeBtn) {
-        return;
-      }
+      if (!cards.length || !backdrop || !imgEl || !captionEl || !closeBtn) return;
 
-      function openLightbox(fullSrc, caption, altText) {
-        imageEl.src = fullSrc;
-        imageEl.alt = altText || "";
+      function openLightbox(src, alt, caption) {
+        imgEl.src = src;
+        imgEl.alt = alt || "";
         captionEl.textContent = caption || "";
         backdrop.classList.add("visible");
         backdrop.setAttribute("aria-hidden", "false");
@@ -1013,34 +1023,34 @@
       function closeLightbox() {
         backdrop.classList.remove("visible");
         backdrop.setAttribute("aria-hidden", "true");
-        imageEl.src = "";
+        imgEl.src = "";
         document.body.style.overflow = "";
       }
 
       cards.forEach((card) => {
         card.addEventListener("click", () => {
-          const full = card.getAttribute("data-full");
-          const caption = card.getAttribute("data-caption");
           const img = card.querySelector("img");
-          const alt = img ? img.alt : "";
-          if (full) {
-            openLightbox(full, caption, alt);
-          }
+          if (!img) return;
+          const src = img.getAttribute("src");
+          const alt = img.getAttribute("alt") || "";
+          // usamos o alt como legenda simples
+          openLightbox(src, alt, alt);
         });
       });
 
       closeBtn.addEventListener("click", closeLightbox);
-
-      backdrop.addEventListener("click", (e) => {
-        if (e.target === backdrop) {
+      backdrop.addEventListener("click", (event) => {
+        if (event.target === backdrop) {
           closeLightbox();
         }
       });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeLightbox();
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeLightbox();
+        }
       });
     })();
+
   </script>
 </body>
 </html>
